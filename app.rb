@@ -50,10 +50,15 @@ patch('/recipes/:id') do
   redirect('/recipes/'.concat(@recipe.id().to_s()))
 end
 
-delete('/recipes/:id') do
+delete('/recipes/:id/ingredient') do
   recipe = Recipe.find(params.fetch('id').to_i)
   ingredient = Ingredient.find(params.fetch('ingredient_remove').to_i)
   ingredient.recipes.destroy(recipe)
   redirect('/recipes/'.concat(recipe.id().to_s()))
+end
 
+delete('/recipes/:id') do
+  recipe = Recipe.find(params.fetch('id').to_i)
+  recipe.delete()
+  redirect('/recipes')
 end

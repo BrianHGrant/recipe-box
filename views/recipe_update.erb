@@ -12,7 +12,7 @@
 <button type="submit" name="update">Update</button>
 </form>
 <hr>
-<form action="/recipes/<%= @recipe.id %>" method="post">
+<form action="/recipes/<%= @recipe.id %>/ingredient" method="post">
   <input type="hidden" name="_method" value="delete">
   <select name="ingredient_remove">
     <% @recipe.ingredients().each() do |ingredient| %>
@@ -21,5 +21,11 @@
   </select>
   <button type="submit">Remove ingredient</button>
 </form>
+<form action="/recipes/<%= @recipe.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit" name="delete_recipe">Delete Recipe</button>
+</form>
+<hr>
+<a href="/recipes/<%= @recipe.id %>"><%= @recipe.name() %></a><br>
 <a href="/recipes">Recipes</a><br>
 <a href="/">Home</a>
