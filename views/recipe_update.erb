@@ -1,0 +1,25 @@
+<h2>Update: <%= @recipe.name() %></h2>
+<hr>
+<form class="form-control" action="/recipes/<%= @recipe.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="new_recipe_name">New Recipe Name</label>
+  <input type="test" name="new_recipe_name" value="<%= @recipe.name %>">
+  <label for="new_recipe_ingredient">New Recipe Ingredient</label>
+  <input type="test" name="new_recipe_ingredient" value="<%= @recipe.ingredients.name %>">
+  <label for="new_recipe_instruction">New Recipe Instruction</label>
+  <input type="test" name="new_recipe_instruction" value="<%= @recipe.instruction() %>">
+
+<button type="submit" name="update">Update</button>
+</form>
+<hr>
+<form action="/recipes/<%= @recipe.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <select name="ingredient_remove">
+    <% @recipe.ingredients().each() do |ingredient| %>
+      <option value = "<%= ingredient.id() %>"><%= ingredient.name() %></option>
+    <% end %>
+  </select>
+  <button type="submit">Remove ingredient</button>
+</form>
+<a href="/recipes">Recipes</a><br>
+<a href="/">Home</a>

@@ -21,7 +21,10 @@
     </div>
   </div>
 
-  <button type="submit">Update</button><br>
+  <form action="/recipe/<%= @recipe.id() %>/update" method="post">
+    <button type="submit">Update</button>
+  </form>
+  <br>
   <hr>
   <a href="/recipes">Recipes</a><br>
   <a href="/">Home</a>

@@ -31,3 +31,29 @@ get('/recipes/:id') do
   @instruction_array = @recipe.instruction.split("/")
   erb(:recipe)
 end
+
+post('/recipe/:id/update') do
+  @recipe = Recipe.find(params.fetch("id"))
+  erb(:recipe_update)
+end
+patch('/recipes/:id') do
+  @recipe = Recipe.find(params.fetch('id').to_i)
+  recipe_name = params.fetch('new_recipe_name')
+  ingredients = params.fetch('new_recipe_ingredient')
+  instruction = params.fetch('new_recipe_instruction')
+  ingredients_list = ingredients.split(", ")
+  ingredients_list.each do |ingredient|
+    new_ingredient = Ingredient.new({:name => ingredient})
+    @recipe.ingredients.push(new_ingredient)
+  end
+  @recipe.update({:name => recipe_name, :instruction =>  instruction})
+  redirect('/recipes/'.concat(@recipe.id().to_s()))
+end
+
+delete('/recipes/:id') do
+  recipe = Recipe.find(params.fetch('id').to_i)
+  ingredient = Ingredient.find(params.fetch('ingredient_remove').to_i)
+  ingredient.recipes.destroy(recipe)
+  redirect('/recipes/'.concat(recipe.id().to_s()))
+
+end
