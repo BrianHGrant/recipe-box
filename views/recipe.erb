@@ -1,0 +1,28 @@
+<h2> <%= @recipe.name() %></h2>
+<hr>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 col-md-2-offset">
+      <h3>Ingredient List</h3>
+      <ul>
+        <% @recipe.ingredients.each() do | ingredient | %>
+          <li> <%= ingredient.name() %> </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-5 col-md-2-offset">
+      <h3>Instruction List</h3>
+      <ol>
+        <% @instruction_array.each() do | instruction | %>
+          <li> <%= instruction %> </li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+
+  <button type="submit">Update</button><br>
+  <hr>
+  <a href="/recipes">Recipes</a><br>
+  <a href="/">Home</a>
+</div>

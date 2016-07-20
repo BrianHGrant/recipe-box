@@ -6,10 +6,10 @@ describe('recipe functionality through application', {:type => :feature}) do
     click_link('Recipe view')
     fill_in('recipe_name', :with => "Succatash")
     fill_in('recipe_ingredients', :with => "corn, water, salt")
-    fill_in('instructions', :with => "1. Throw ingredients in pot. 2. Boil. 3. Enjoy.")
+    fill_in('instructions', :with => "Throw ingredients in pot / Boil / Enjoy")
     click_button('Save')
     expect(page).to have_content('Succatash')
     click_link('Succatash')
-    expect(page).to have_content("Corn Water Salt Instructions: 1. Throw ingredients in pot. 2. Boil. 3. Enjoy.")
+    expect(page).to have_content("corn water salt Instruction List Throw ingredients in pot Boil Enjoy")
   end
 end
