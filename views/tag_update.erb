@@ -6,6 +6,10 @@
   <input type="text" name="new_tag_name" value="<%= @tag.name %>">
   <button type="submit">Update Tag</button>
 </form>
+<form action="/tags/<%= @tag.id() %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit">Delete Tag</button>
+</form>
 <hr>
 <a href="/tags/<%= @tag.id %>"><%= @tag.name()%></a><br>
 <a href="/tags">Tags</a><br>

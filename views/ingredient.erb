@@ -3,7 +3,7 @@
 <hr>
   <h3>Recipe List</h3>
   <ul>
-    <% @ingredient.recipes.name() do | recipe | %>
+    <% @ingredient.recipes.each() do | recipe | %>
       <li> <%= recipe.name() %></li>
     <% end %>
   </ul>

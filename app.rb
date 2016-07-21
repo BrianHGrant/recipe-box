@@ -145,3 +145,9 @@ patch('/tags/:id') do
   @tag.update({:name => name})
   redirect('/tags/'.concat(@tag.id().to_s))
 end
+
+delete('/tags/:id') do
+  tag = Tag.find(params.fetch('id').to_i)
+  tag.delete()
+  redirect('/tags')
+end
