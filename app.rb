@@ -44,20 +44,30 @@ end
 
 post('/recipe/:id/update') do
   @recipe = Recipe.find(params.fetch("id"))
+  @tags = Tag.all()
   erb(:recipe_update)
 end
 patch('/recipes/:id') do
-  @recipe = Recipe.find(params.fetch('id').to_i)
+  recipe = Recipe.find(params.fetch('id').to_i)
   recipe_name = params.fetch('new_recipe_name')
   ingredients = params.fetch('new_recipe_ingredient')
   instruction = params.fetch('new_recipe_instruction')
   ingredients_list = ingredients.split("/")
   ingredients_list.each do |ingredient|
     new_ingredient = Ingredient.new({:name => ingredient})
-    @recipe.ingredients.push(new_ingredient)
+    recipe.ingredients.push(new_ingredient)
   end
-  @recipe.update({:name => recipe_name, :instruction =>  instruction})
-  redirect('/recipes/'.concat(@recipe.id().to_s()))
+  recipe.update({:name => recipe_name, :instruction =>  instruction})
+  if params[:new_recipe_tag]
+    tag_ids = []
+    params[:new_recipe_tag].each do |tag_id|
+      tag_ids.push(tag_id.to_i())
+    end
+    tag_ids.each do |tag_id|
+      Tag.find(tag_id).recipes.push(recipe)
+    end
+  end
+  redirect('/recipes/'.concat(recipe.id().to_s()))
 end
 
 delete('/recipes/:id/ingredient') do

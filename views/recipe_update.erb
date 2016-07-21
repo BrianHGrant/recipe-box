@@ -1,15 +1,26 @@
 <h2>Update: <%= @recipe.name() %></h2>
 <hr>
-<form class="form-control" action="/recipes/<%= @recipe.id %>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <label for="new_recipe_name">New Recipe Name</label>
-  <input type="text" name="new_recipe_name" value="<%= @recipe.name %>">
-  <label for="new_recipe_ingredient">New Recipe Ingredient</label>
-  <input type="text" name="new_recipe_ingredient" value="<%= @recipe.ingredients.name %>">
-  <label for="new_recipe_instruction">New Recipe Instruction</label>
-  <input type="text" name="new_recipe_instruction" value="<%= @recipe.instruction() %>">
-<button type="submit" name="update">Update</button>
-</form>
+<div class = "row">
+  <form action="/recipes/<%= @recipe.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="new_recipe_name">New Recipe Name</label>
+    <input type="text" name="new_recipe_name" value="<%= @recipe.name %>">
+    <label for="new_recipe_ingredient">New Recipe Ingredient</label>
+    <input type="text" name="new_recipe_ingredient" value="<%= @recipe.ingredients.name %>">
+    <label for="new_recipe_instruction">New Recipe Instruction</label>
+    <input type="text" name="new_recipe_instruction" value="<%= @recipe.instruction() %>"><br>
+    <label for="new_recipe_tag[]">Add Tag</label>
+    <% if @tags.any? %>
+      <ul>
+        <% @tags.each do |tag| %>
+          <li><input type="checkbox" name="new_recipe_tag[]" value="<%= tag.id() %>"> <%= tag.name() %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <button type="submit" name="update">Update</button>
+  </form>
+</div>
+
 <hr>
 <form action="/recipes/<%= @recipe.id %>/ingredient" method="post">
   <input type="hidden" name="_method" value="delete">
