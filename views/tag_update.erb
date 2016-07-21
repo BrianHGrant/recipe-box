@@ -1,0 +1,12 @@
+<h2>Update: <%= @tag.name() %></h2>
+<hr>
+<form action="/tags/<%= @tag.id()%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="new_tag_name">New Tag name:</label>
+  <input type="text" name="new_tag_name" value="<%= @tag.name %>">
+  <button type="submit">Update Tag</button>
+</form>
+<hr>
+<a href="/tags/<%= @tag.id %>"><%= @tag.name()%></a><br>
+<a href="/tags">Tags</a><br>
+<a href="/">Home</a>

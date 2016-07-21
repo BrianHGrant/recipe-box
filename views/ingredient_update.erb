@@ -1,6 +1,6 @@
 <h2>Update: <%= @ingredient.name() %></h2>
 <hr>
-<form class="form-control" action="/ingredients/<%= @ingredient.id() %>" method="post">
+<form action="/ingredients/<%= @ingredient.id() %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label for="new_ingredient_name">New Ingredient name:</label>
   <input type="text" name="new_ingredient_name" value="<%= @ingredient.name %>">

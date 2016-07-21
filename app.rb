@@ -117,3 +117,31 @@ patch('/ingredients/:id') do
   @ingredient.update({:name => name})
   redirect('/ingredients/'.concat(@ingredient.id().to_s))
 end
+
+get('/tags') do
+  @tags = Tag.all()
+  erb(:tags)
+end
+
+post('/tags') do
+  name = params.fetch('tag_name')
+  new_tag = Tag.create({:name => name})
+  redirect('/tags')
+end
+
+get('/tags/:id') do
+  @tag = Tag.find(params.fetch('id').to_i)
+  erb(:tag)
+end
+
+post('/tags/:id/update') do
+  @tag = Tag.find(params.fetch('id').to_i)
+  erb(:tag_update)
+end
+
+patch('/tags/:id') do
+  name = params.fetch('new_tag_name')
+  @tag = Tag.find(params.fetch('id').to_i)
+  @tag.update({:name => name})
+  redirect('/tags/'.concat(@tag.id().to_s))
+end

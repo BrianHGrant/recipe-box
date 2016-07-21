@@ -1,0 +1,17 @@
+<div class="container">
+  <h2> <%= @tag.name() %></h2>
+  <hr>
+  <h3>Recipe List</h3>
+  <ul>
+    <% @tag.recipes.name() do | recipe | %>
+      <li> <%= recipe.name() %></li>
+    <% end %>
+  </ul>
+  <form action="/tags/<%= @tag.id() %>/update" method="post">
+    <button type="submit">Update</button>
+  </form>
+  <br>
+  <hr>
+  <a href="/tags">Tags</a><br>
+  <a href="/">Home</a>
+</div>

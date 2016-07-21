@@ -1,0 +1,20 @@
+<h3>My Tags</h3>
+<hr>
+<% if @tags.any? %>
+  <ul>
+    <% @tags.each do | tag | %>
+      <li><a href="/tags/<%= tag.id() %>"><%= tag.name()%></a></li>
+      <% end %>
+  </ul>
+<% else %>
+  <h3>No Tags at this time.</h3>
+<% end %>
+
+<h3>Add Tag</h3>
+<form action="/tags" method="post">
+  <label for="tag_name">Tag Name:</label>
+  <input type="text" name="tag_name">
+  <button type="submit">Save</button>
+</form>
+<hr>
+<a href="/">Home</a>
