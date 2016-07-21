@@ -42,5 +42,18 @@ describe('recipe functionality through application', {:type => :feature}) do
     click_button('Delete Recipe')
     expect(page).to have_content('No recipes at this time. Add a recipe below.')
   end
+  it('allows the user to remove an ingredient from recipe') do
+    visit('/')
+    click_link('Recipe view')
+    fill_in('recipe_name', :with => "Succatash")
+    fill_in('recipe_ingredients', :with => "corn / water / salt")
+    fill_in('instructions', :with => "Throw ingredients in pot / Boil / Enjoy")
+    click_button('Save')
+    click_link('Succatash')
+    click_button('Update')
+    select('water', :from => 'ingredient_remove')
+    click_button('Remove ingredient')
+    expect(page).to have_content('corn salt')
+  end
 
 end
