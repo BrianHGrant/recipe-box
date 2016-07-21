@@ -1,0 +1,17 @@
+<div class="container">
+<h2> <%= @ingredient.name() %></h2>
+<hr>
+  <h3>Recipe List</h3>
+  <ul>
+    <% @ingredient.recipes.name() do | recipe | %>
+      <li> <%= recipe.name() %></li>
+    <% end %>
+  </ul>
+  <form action="/ingredients/<%= @ingredient.id() %>/update" method="post">
+    <button type="submit">Update</button>
+  </form>
+  <br>
+  <hr>
+  <a href="/ingredients">Ingredients</a><br>
+  <a href="/">Home</a>
+</div>

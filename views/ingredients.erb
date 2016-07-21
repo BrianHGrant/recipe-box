@@ -1,0 +1,20 @@
+<h2>My Ingredients</h2>
+<hr>
+<% if @ingredients.any? %>
+  <ul>
+    <% @ingredients.each do |ingredient| %>
+      <li><a href="/ingredients/<%= ingredient.id() %>"><%= ingredient.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>No ingredients at this time. Add ingredients or recipes</h3>
+<% end %>
+
+<h2>Add Ingredient</h2>
+<form action="/ingredients" method="post">
+  <label for="ingredient_name">Ingredient Name:</label>
+  <input type="text" name="ingredient_name">
+  <button type="submit">Save</button>
+</form>
+<hr>
+<a href="/">Home</a>

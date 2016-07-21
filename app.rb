@@ -62,3 +62,30 @@ delete('/recipes/:id') do
   recipe.delete()
   redirect('/recipes')
 end
+
+get('/ingredients') do
+  @ingredients = Ingredient.all()
+  erb(:ingredients)
+end
+
+get('/ingredients/:id') do
+  @ingredient = Ingredient.find(params.fetch("id").to_i)
+  erb(:ingredient)
+end
+
+post('/ingredients/') do
+  name = params.fetch("ingredient_name")
+  new_ingredient = Ingredient.create({:name => name})
+  redirect('/ingredients')
+end
+
+post('/ingredients/:id/update') do
+  @ingredient = Ingredient.find(params.fetch("id").to_i)
+  erb(:ingredient_update)
+end
+
+patch('/ingredients/:id') do
+  ingredient = params.fetch('new_ingredient_name')
+  ingredient.update({:name => ingredient})
+  redirect('/ingredients/'.concat(@ingredient.id().to_s))
+end

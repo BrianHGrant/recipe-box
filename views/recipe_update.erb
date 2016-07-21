@@ -3,11 +3,11 @@
 <form class="form-control" action="/recipes/<%= @recipe.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label for="new_recipe_name">New Recipe Name</label>
-  <input type="test" name="new_recipe_name" value="<%= @recipe.name %>">
+  <input type="text" name="new_recipe_name" value="<%= @recipe.name %>">
   <label for="new_recipe_ingredient">New Recipe Ingredient</label>
-  <input type="test" name="new_recipe_ingredient" value="<%= @recipe.ingredients.name %>">
+  <input type="text" name="new_recipe_ingredient" value="<%= @recipe.ingredients.name %>">
   <label for="new_recipe_instruction">New Recipe Instruction</label>
-  <input type="test" name="new_recipe_instruction" value="<%= @recipe.instruction() %>">
+  <input type="text" name="new_recipe_instruction" value="<%= @recipe.instruction() %>">
 
 <button type="submit" name="update">Update</button>
 </form>
