@@ -24,12 +24,14 @@ post('/recipes') do
     new_ingredient = Ingredient.new({:name => ingredient})
     recipe.ingredients.push(new_ingredient)
   end
-  tag_ids = []
-  params[:recipe_tag].each do |tag_id|
-    tag_ids.push(tag_id.to_i())
-  end
-  tag_ids.each do |tag_id|
-    Tag.find(tag_id).recipes.push(recipe)
+  if params[:recipe_tag]
+    tag_ids = []
+    params[:recipe_tag].each do |tag_id|
+      tag_ids.push(tag_id.to_i())
+    end
+    tag_ids.each do |tag_id|
+      Tag.find(tag_id).recipes.push(recipe)
+    end
   end
   redirect('/recipes')
 end
@@ -63,6 +65,13 @@ delete('/recipes/:id/ingredient') do
   ingredient = Ingredient.find(params.fetch('ingredient_remove').to_i)
   ingredient.recipes.destroy(recipe)
   redirect('/recipes/'.concat(recipe.id().to_s()))
+end
+
+delete('/recipes/:id/tag') do
+  recipe = Recipe.find(params.fetch('id').to_i)
+  tag = Tag.find(params.fetch('tag_remove').to_i)
+  tag.recipes.destroy(recipe)
+  redirect('/recipes/'.concat(recipe.id().to_s))
 end
 
 delete('/recipes/:id') do

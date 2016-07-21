@@ -8,7 +8,6 @@
   <input type="text" name="new_recipe_ingredient" value="<%= @recipe.ingredients.name %>">
   <label for="new_recipe_instruction">New Recipe Instruction</label>
   <input type="text" name="new_recipe_instruction" value="<%= @recipe.instruction() %>">
-
 <button type="submit" name="update">Update</button>
 </form>
 <hr>
@@ -20,6 +19,15 @@
     <% end %>
   </select>
   <button type="submit">Remove ingredient</button>
+</form>
+<form action="/recipes/<%= @recipe.id %>/tag" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <select name="tag_remove">
+    <% @recipe.tags().each() do |tag| %>
+      <option value="<%= tag.id() %>"><%= tag.name()%> </option>
+    <% end %>
+  </select>
+  <button type="submit">Remove Tag</button>
 </form>
 <form action="/recipes/<%= @recipe.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
