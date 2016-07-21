@@ -85,7 +85,8 @@ post('/ingredients/:id/update') do
 end
 
 patch('/ingredients/:id') do
-  ingredient = params.fetch('new_ingredient_name')
-  ingredient.update({:name => ingredient})
+  name = params.fetch('new_ingredient_name')
+  @ingredient = Ingredient.find(params.fetch('id').to_i)
+  @ingredient.update({:name => name})
   redirect('/ingredients/'.concat(@ingredient.id().to_s))
 end
