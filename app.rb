@@ -10,6 +10,7 @@ end
 
 get('/recipes') do
   @recipes = Recipe.all()
+  @tags = Tag.all()
   erb(:recipes)
 end
 
@@ -22,6 +23,13 @@ post('/recipes') do
   ingredients_list.each do |ingredient|
     new_ingredient = Ingredient.new({:name => ingredient})
     recipe.ingredients.push(new_ingredient)
+  end
+  tag_ids = []
+  params[:recipe_tag].each do |tag_id|
+    tag_ids.push(tag_id.to_i())
+  end
+  tag_ids.each do |tag_id|
+    Tag.find(tag_id).recipes.push(recipe)
   end
   redirect('/recipes')
 end

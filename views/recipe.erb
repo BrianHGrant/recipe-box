@@ -20,6 +20,19 @@
       </ol>
     </div>
   </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-2-offset col-md-5">
+      <h3>Tags List</h3>
+      <ul>
+        <% @recipe.tags.each() do |tag| %>
+          <li> <%= tag.name() %> </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
 
   <form action="/recipe/<%= @recipe.id() %>/update" method="post">
     <button type="submit">Update</button>

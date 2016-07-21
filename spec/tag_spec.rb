@@ -9,5 +9,4 @@ describe(Tag) do
     test_tag.recipes.push(test_recipe2)
     expect(test_tag.recipes()).to(eq([test_recipe1, test_recipe2]))
   end
-
 end

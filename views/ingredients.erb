@@ -1,4 +1,4 @@
-<h2>My Ingredients</h2>
+<h3>My Ingredients</h3>
 <hr>
 <% if @ingredients.any? %>
   <ul>
@@ -7,10 +7,10 @@
     <% end %>
   </ul>
 <% else %>
-  <h3>No ingredients at this time. Add ingredients or recipes</h3>
+  <h4>No ingredients at this time. Add ingredients or recipes</h4>
 <% end %>
 
-<h2>Add Ingredient</h2>
+<h3>Add Ingredient</h3>
 <form action="/ingredients" method="post">
   <label for="ingredient_name">Ingredient Name:</label>
   <input type="text" name="ingredient_name">
