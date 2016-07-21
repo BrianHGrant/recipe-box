@@ -30,6 +30,17 @@ describe('recipe functionality through application', {:type => :feature}) do
     expect(page).to have_content('white truffle oil')
     expect(page).to have_content('stir')
   end
-
+  it('allows the user to delete a recipe') do
+    visit('/')
+    click_link('Recipe view')
+    fill_in('recipe_name', :with => "Succatash")
+    fill_in('recipe_ingredients', :with => "corn / water / salt")
+    fill_in('instructions', :with => "Throw ingredients in pot / Boil / Enjoy")
+    click_button('Save')
+    click_link('Succatash')
+    click_button('Update')
+    click_button('Delete Recipe')
+    expect(page).to have_content('No recipes at this time. Add a recipe below.')
+  end
 
 end
