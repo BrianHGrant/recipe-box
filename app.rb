@@ -73,7 +73,7 @@ get('/ingredients/:id') do
   erb(:ingredient)
 end
 
-post('/ingredients/') do
+post('/ingredients') do
   name = params.fetch("ingredient_name")
   new_ingredient = Ingredient.create({:name => name})
   redirect('/ingredients')
