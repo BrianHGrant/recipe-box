@@ -18,7 +18,7 @@ post('/recipes') do
   instruction = params.fetch("instructions")
   recipe = Recipe.create({:name => name, :instruction => instruction})
   ingredients = params.fetch("recipe_ingredients")
-  ingredients_list = ingredients.split(", ")
+  ingredients_list = ingredients.split("/")
   ingredients_list.each do |ingredient|
     new_ingredient = Ingredient.new({:name => ingredient})
     recipe.ingredients.push(new_ingredient)
@@ -41,7 +41,7 @@ patch('/recipes/:id') do
   recipe_name = params.fetch('new_recipe_name')
   ingredients = params.fetch('new_recipe_ingredient')
   instruction = params.fetch('new_recipe_instruction')
-  ingredients_list = ingredients.split(", ")
+  ingredients_list = ingredients.split("/")
   ingredients_list.each do |ingredient|
     new_ingredient = Ingredient.new({:name => ingredient})
     @recipe.ingredients.push(new_ingredient)
