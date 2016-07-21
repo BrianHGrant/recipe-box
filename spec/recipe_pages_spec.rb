@@ -1,16 +1,19 @@
 require('spec_helper')
 
+
 describe('recipe functionality through application', {:type => :feature}) do
   it('allows a user to add a new recipe') do
+    Tag.create({:name => "soups"})
     visit('/')
     click_link('Recipe view')
     fill_in('recipe_name', :with => "Succatash")
     fill_in('recipe_ingredients', :with => "corn / water / salt")
+    check('recipe_tag[]')
     fill_in('instructions', :with => "Throw ingredients in pot / Boil / Enjoy")
     click_button('Save')
     expect(page).to have_content('Succatash')
     click_link('Succatash')
-    expect(page).to have_content("corn water salt Instruction List Throw ingredients in pot Boil Enjoy")
+    expect(page).to have_content("corn water salt Instruction List Throw ingredients in pot Boil Enjoy Tags List soups")
   end
 
   it('allows a user to update a recipe') do
@@ -54,6 +57,22 @@ describe('recipe functionality through application', {:type => :feature}) do
     select('water', :from => 'ingredient_remove')
     click_button('Remove ingredient')
     expect(page).to have_content('corn salt')
+  end
+
+  it('allows the user to remove a tag from a recipe') do
+    Tag.create({:name => "soups"})
+    visit('/')
+    click_link('Recipe view')
+    fill_in('recipe_name', :with => "Succatash")
+    fill_in('recipe_ingredients', :with => "corn / water / salt")
+    check('recipe_tag[]')
+    fill_in('instructions', :with => "Throw ingredients in pot / Boil / Enjoy")
+    click_button('Save')
+    click_link('Succatash')
+    click_button('Update')
+    select('soups', :from => 'tag_remove')
+    click_button('Remove Tag')
+    expect(page).to have_no_content('soups')
   end
 
 end
