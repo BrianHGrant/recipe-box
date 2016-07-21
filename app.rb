@@ -17,7 +17,8 @@ end
 post('/recipes') do
   name = params.fetch("recipe_name")
   instruction = params.fetch("instructions")
-  recipe = Recipe.create({:name => name, :instruction => instruction})
+  rating = params.fetch('recipe_rating')
+  recipe = Recipe.create({:name => name, :instruction => instruction, :rating => rating})
   ingredients = params.fetch("recipe_ingredients")
   ingredients_list = ingredients.split("/")
   ingredients_list.each do |ingredient|

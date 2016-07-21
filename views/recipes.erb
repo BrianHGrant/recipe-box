@@ -17,16 +17,16 @@
     <label for="recipe_ingredients">Recipe Ingredients:</label>
     <input type="text" name="recipe_ingredients">
     <label for="instructions">Instructions:</label>
-    <input type="text" name="instructions"><br>
+    <input type="text" name="instructions">
+    <label for="recipe_rating">Recipe Rating:</label>
+    <input type="number" min="1" max="5" name="recipe_rating" value="3">
+    <br>
     <% if @tags.any? %>
       <ul>
         <% @tags.each do |tag| %>
           <li><input type="checkbox" name="recipe_tag[]" value="<%= tag.id() %>"> <%= tag.name() %></li>
         <% end %>
       </ul>
-    <% else %>
-      <label for"recipe_tag">Tag:</label>
-      <input type="text" name="recipe_tag_name">
     <% end %>
     <button type="submit">Save</button>
   </form>
